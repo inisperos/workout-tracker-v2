@@ -700,6 +700,16 @@ function renderStats(){
 function renderWorkoutStats(body,sessions){
   var typeCounts={}, locationCounts={};
   sessions.forEach(function(s){ typeCounts[s.type]=(typeCounts[s.type]||0)+1; locationCounts[s.location]=(locationCounts[s.location]||0)+1; });
+  var typeDays={}, monthDays={};
+  sessions.forEach(function(s){
+    if(!typeDays[s.type]) typeDays[s.type]={};
+    typeDays[s.type][s.date]=true;
+    var month=s.date.slice(0,7);
+    if(!monthDays[month]) monthDays[month]={};
+    monthDays[month][s.date]=true;
+  });
+  renderTypePie(body,typeDays);
+  renderMonthlyBars(body,monthDays);
   renderStatBars(body,"Sessions by workout",typeCounts);
   renderStatBars(body,"Sessions by location",locationCounts);
   var recent=el("div","list");
@@ -720,16 +730,6 @@ function renderStatBars(body,title,values){
   body.appendChild(el("h2","sec",title)); body.appendChild(card);
 }
 function renderGeneralStats(body,sessions){
-  var typeDays={}, monthDays={};
-  sessions.forEach(function(s){
-    if(!typeDays[s.type]) typeDays[s.type]={};
-    typeDays[s.type][s.date]=true;
-    var month=s.date.slice(0,7);
-    if(!monthDays[month]) monthDays[month]={};
-    monthDays[month][s.date]=true;
-  });
-  renderTypePie(body,typeDays);
-  renderMonthlyBars(body,monthDays);
   var groups={};
   GROUPS.forEach(function(g){ groups[g]={sets:0,exercises:{}}; });
   sessions.forEach(function(s){ s.entries.forEach(function(en){ var ex=exById(en.exerciseId); if(!ex||!groups[ex.group]) return; groups[ex.group].sets+=setsOf(en).length; groups[ex.group].exercises[ex.id]=true; }); });
