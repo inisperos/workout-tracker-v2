@@ -215,6 +215,11 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
 .month-bar{display:flex;flex:1;min-width:0;height:100%;flex-direction:column;align-items:center;justify-content:end;gap:5px;font-size:11px;color:var(--ink-3)}
 .month-bar .bar{width:100%;max-width:28px;min-height:2px;background:var(--accent);border-radius:5px 5px 0 0}
 .month-bar .count{font-size:11px;color:var(--ink-2);font-weight:600}
+.exercise-manager{display:grid;gap:8px}
+.exercise-row{display:grid;grid-template-columns:minmax(0,1fr) 132px 36px;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line-2)}
+.exercise-row:last-child{border-bottom:0}
+.exercise-row input,.exercise-row select{padding:8px;font-size:14px}
+.exercise-row .del{margin:0}
 @media(max-width:380px){.calendar-grid{gap:2px}.day{min-height:42px;padding:5px 3px}.day .dot{right:4px;bottom:5px}.statbar .name{width:80px}}
 </style>
 </head>
@@ -249,6 +254,8 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
   </div>
   <button class="linkbtn" id="btn-targets">Adjust weekly set targets</button>
   <div class="card targets" id="targets-panel" hidden></div>
+  <button class="linkbtn" id="btn-exercises">Manage exercises</button>
+  <div class="card targets" id="exercise-panel" hidden></div>
 
   <h2 class="sec">Recent sessions</h2>
   <div id="recent"></div>
@@ -403,12 +410,12 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
 "use strict";
 
 /* ---------------- data ---------------- */
-var GROUPS = ["Chest","Back","Shoulders","Biceps","Triceps","Quads","Hamstrings","Glutes","Calves","Core"];
+var GROUPS = ["Chest","Back","Shoulders","Biceps","Triceps","Quads","Hamstrings","Glutes","Adductors","Calves","Core"];
 var TYPE_GROUPS = {
   Push: ["Chest","Shoulders","Triceps"],
   Pull: ["Back","Biceps"],
   Upper:["Chest","Back","Shoulders","Biceps","Triceps"],
-  Legs: ["Quads","Hamstrings","Glutes","Calves"]
+  Legs: ["Quads","Hamstrings","Glutes","Adductors","Calves"]
 };
 var SEED = [
   ["Barbell bench press","Chest"],["Incline dumbbell press","Chest"],["Cable fly","Chest"],
@@ -802,6 +809,32 @@ $("btn-targets").onclick = function(){
   });
   p.hidden = false;
 };
+
+function renderExerciseManager(){
+  var panel=$("exercise-panel"); panel.innerHTML="";
+  if(!db.exercises.length){ panel.appendChild(el("div","empty-state","No exercises available.")); return; }
+  var list=el("div","exercise-manager");
+  db.exercises.slice().sort(function(a,b){return a.name.localeCompare(b.name);}).forEach(function(ex){
+    var row=el("div","exercise-row"), name=document.createElement("input"), group=document.createElement("select"), del=el("button","del","×");
+    name.type="text"; name.value=ex.name; name.setAttribute("aria-label","Exercise name");
+    GROUPS.forEach(function(g){var option=document.createElement("option");option.value=g;option.textContent=g;option.selected=g===ex.group;group.appendChild(option);});
+    group.setAttribute("aria-label","Muscle group"); del.title="Delete "+ex.name;
+    name.onchange=function(){
+      var next=name.value.trim(), duplicate=db.exercises.some(function(item){return item.id!==ex.id&&item.name.toLowerCase()===next.toLowerCase();});
+      if(!next||duplicate){name.value=ex.name;toast(duplicate?"That exercise already exists":"Exercise name cannot be empty");return;}
+      ex.name=next; save(); renderDashboard(); renderExerciseManager();
+    };
+    group.onchange=function(){ex.group=group.value;save();renderDashboard();renderExerciseManager();};
+    del.onclick=function(){
+      var used=db.sessions.some(function(s){return s.entries.some(function(en){return en.exerciseId===ex.id;});});
+      if(!confirm("Delete "+ex.name+(used?"? Past sessions will keep their recorded sets, but show this exercise as removed.":"?"))) return;
+      db.exercises=db.exercises.filter(function(item){return item.id!==ex.id;}); save(); renderDashboard(); renderExerciseManager(); toast("Deleted "+ex.name);
+    };
+    row.appendChild(name);row.appendChild(group);row.appendChild(del);list.appendChild(row);
+  });
+  panel.appendChild(list);
+}
+$("btn-exercises").onclick=function(){var panel=$("exercise-panel");if(!panel.hidden){panel.hidden=true;return;}renderExerciseManager();panel.hidden=false;};
 
 function renderTypePie(body,typeDays){
   var types=Object.keys(typeDays), counts={}, total=0;

@@ -49,6 +49,7 @@ Each screen must have all its listed features to be considered "done" before mov
 - Click to Calendar (Screen H)
 - Log workout (Screen B)
 - Click on muscle group to see exercises for the week
+- Manage exercises: edit an exercise name, change its muscle group, or delete it with confirmation
 
 ### Screen B: Log Workout Specification
 - Back to Main Dashboard (Screen A)
@@ -71,6 +72,7 @@ Each screen must have all its listed features to be considered "done" before mov
 - User can type name of the workout
 - User can select which muscle group it targets
 - Back and Next → Active Session (Screen C)
+- Supported muscle groups include Adductors
 
 ### Screen F: Stats Dashboard
 - **Workout View (F1)**
