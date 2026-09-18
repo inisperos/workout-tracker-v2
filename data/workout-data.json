@@ -26,11 +26,6 @@
       "group": "Back"
     },
     {
-      "id": "x6",
-      "name": "Overhead press",
-      "group": "Shoulders"
-    },
-    {
       "id": "x7",
       "name": "Lateral raise",
       "group": "Shoulders"
@@ -38,7 +33,7 @@
     {
       "id": "x8",
       "name": "Rear delt fly",
-      "group": "Back"
+      "group": "Shoulders"
     },
     {
       "id": "x9",
