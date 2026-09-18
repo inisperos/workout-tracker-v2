@@ -3,6 +3,12 @@
 **Target audience:** Me
 **Hosted on:** GitHub Pages
 
+## Current status
+
+- The MVP, Stats, and Calendar phases are complete.
+- The current styling is accepted as the baseline and should remain unchanged.
+- Future changes should be limited to bug fixes unless a new feature or design change is explicitly requested.
+
 ## Original objective
 
 Be able to see an aggregate of my workouts and allow myself a visual cue of the frequency and volume per muscle group per week. I also want to be able to view my PR and past sessions while I record the previous one.
