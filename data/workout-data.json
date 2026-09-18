@@ -132,21 +132,60 @@
           ]
         },
         {
-          "exerciseId": "x2",
+          "exerciseId": "zyl8xsx",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "weight": 20,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 9
+            },
+            {
+              "weight": 80,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
           "sets": [
             {
               "weight": 45,
-              "reps": 8
+              "reps": 9
             },
             {
               "weight": 45,
               "reps": 7
             }
           ]
+        },
+        {
+          "exerciseId": "x9",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 7
+            },
+            {
+              "weight": 30,
+              "reps": 6
+            }
+          ]
         }
       ],
       "created": 1789754194313,
-      "updatedAt": 1789761592966
+      "updatedAt": 1789761886029
     }
   ],
   "targets": {
