@@ -6,38 +6,13 @@
       "group": "Chest"
     },
     {
-      "id": "x1",
-      "name": "Incline dumbbell press",
-      "group": "Chest"
-    },
-    {
-      "id": "x2",
-      "name": "Cable fly",
-      "group": "Chest"
-    },
-    {
       "id": "x3",
       "name": "Lat pulldown",
       "group": "Back"
     },
     {
-      "id": "x4",
-      "name": "Barbell row",
-      "group": "Back"
-    },
-    {
-      "id": "x5",
-      "name": "Seated cable row",
-      "group": "Back"
-    },
-    {
-      "id": "x6",
-      "name": "Overhead press",
-      "group": "Shoulders"
-    },
-    {
       "id": "x7",
-      "name": "Lateral raise",
+      "name": "Lateral raise Cable",
       "group": "Shoulders"
     },
     {
@@ -51,18 +26,8 @@
       "group": "Biceps"
     },
     {
-      "id": "x10",
-      "name": "Incline dumbbell curl",
-      "group": "Biceps"
-    },
-    {
       "id": "x11",
       "name": "Cable pushdown",
-      "group": "Triceps"
-    },
-    {
-      "id": "x12",
-      "name": "Overhead cable extension",
       "group": "Triceps"
     },
     {
@@ -81,11 +46,6 @@
       "group": "Quads"
     },
     {
-      "id": "x16",
-      "name": "Romanian deadlift",
-      "group": "Hamstrings"
-    },
-    {
       "id": "x17",
       "name": "Seated leg curl",
       "group": "Hamstrings"
@@ -102,18 +62,43 @@
     },
     {
       "id": "x20",
-      "name": "Cable crunch",
+      "name": "Ab Machine",
       "group": "Core"
     },
     {
       "id": "zyl8xsx",
-      "name": "Lat raise machine",
+      "name": "Lat raise Machine",
       "group": "Shoulders"
     },
     {
       "id": "rin7h0m",
       "name": "Abductors",
-      "group": "Quads"
+      "group": "Glutes"
+    },
+    {
+      "id": "x2",
+      "name": "Cable fly",
+      "group": "Chest"
+    },
+    {
+      "id": "zzhj0gy",
+      "name": "Lying Leg Curl",
+      "group": "Hamstrings"
+    },
+    {
+      "id": "3evxrpv",
+      "name": "Adductor Machine",
+      "group": "Adductors"
+    },
+    {
+      "id": "otknask",
+      "name": "Preacher Curl",
+      "group": "Biceps"
+    },
+    {
+      "id": "i8biey1",
+      "name": "Machine Row",
+      "group": "Back"
     }
   ],
   "sessions": [
@@ -236,6 +221,325 @@
       ],
       "created": 1789761939178,
       "updatedAt": 1789761970469
+    },
+    {
+      "id": "ozjpjaw",
+      "date": "2026-09-14",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 105,
+              "reps": 6
+            },
+            {
+              "weight": 105,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "zzhj0gy",
+          "sets": [
+            {
+              "weight": 62.5,
+              "reps": 5
+            },
+            {
+              "weight": 60,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "rin7h0m",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 7
+            },
+            {
+              "weight": 80,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "3evxrpv",
+          "sets": [
+            {
+              "weight": 50,
+              "reps": 9
+            },
+            {
+              "weight": 50,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x19",
+          "sets": [
+            {
+              "weight": 100,
+              "reps": 12
+            }
+          ]
+        }
+      ],
+      "created": 1789763599667,
+      "updatedAt": 1789763694767
+    },
+    {
+      "id": "5kspvho",
+      "date": "2026-09-11",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 105,
+              "reps": 5
+            },
+            {
+              "weight": 100,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "zzhj0gy",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 7
+            },
+            {
+              "weight": 60,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x14",
+          "sets": [
+            {
+              "weight": 70,
+              "reps": 8
+            },
+            {
+              "weight": 70,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789763713254,
+      "updatedAt": 1789763817078
+    },
+    {
+      "id": "x1wq94o",
+      "date": "2026-09-10",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 5,
+              "reps": 10
+            },
+            {
+              "weight": 5,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 5
+            },
+            {
+              "weight": 25,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 7
+            },
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 6
+            },
+            {
+              "weight": 65,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 8
+            }
+          ]
+        }
+      ],
+      "created": 1789763899599,
+      "updatedAt": 1789764011348
+    },
+    {
+      "id": "4mji3bw",
+      "date": "2026-09-03",
+      "location": "Planet Fitness",
+      "type": "Pull",
+      "entries": [
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 7
+            },
+            {
+              "weight": 90,
+              "reps": 7
+            },
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 7
+            },
+            {
+              "weight": 80,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x8",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 9
+            }
+          ]
+        }
+      ],
+      "created": 1789764086200,
+      "updatedAt": 1789764139053
+    },
+    {
+      "id": "ij94xrd",
+      "date": "2026-09-02",
+      "location": "Work Gym",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "zyl8xsx",
+          "sets": [
+            {
+              "weight": 15,
+              "reps": 7
+            },
+            {
+              "weight": 15,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 9
+            },
+            {
+              "weight": 45,
+              "reps": 9
+            }
+          ]
+        }
+      ],
+      "created": 1789764195170,
+      "updatedAt": 1789764236978
     }
   ],
   "targets": {
@@ -248,6 +552,7 @@
     "Hamstrings": 6,
     "Glutes": 6,
     "Calves": 3,
-    "Core": 3
+    "Core": 3,
+    "Adductors": 10
   }
 }
