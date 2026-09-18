@@ -69,6 +69,8 @@ Each screen must have all its listed features to be considered "done" before mov
 ### Screen F: Stats Dashboard
 - **Workout View (F1)**
 - **General View (F2)**
+  - Show gym days by workout type in a pie graph
+  - Show gym days by month in a bar graph
   - Click on a muscle group to see what workouts a user has done and their PR
   - Click a button for that exercise to show its history (Screen G)
 - **Overall actions**

@@ -205,6 +205,16 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
 .day-detail{margin-top:14px}
 .day-detail h2{font-size:14px;margin:0 0 8px;color:var(--ink-2)}
 .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
+.chart-card{margin:12px 0}
+.chart-wrap{display:flex;align-items:center;gap:18px;margin-top:12px}
+.pie{width:132px;height:132px;border-radius:50%;background:var(--surface-2);flex:none}
+.chart-legend{display:grid;gap:7px;font-size:13px}
+.legend-row{display:flex;align-items:center;gap:7px}
+.legend-swatch{width:10px;height:10px;border-radius:2px;flex:none}
+.bar-chart{display:flex;align-items:end;gap:7px;height:150px;margin-top:14px;padding:0 4px;border-bottom:1px solid var(--line)}
+.month-bar{display:flex;flex:1;min-width:0;height:100%;flex-direction:column;align-items:center;justify-content:end;gap:5px;font-size:11px;color:var(--ink-3)}
+.month-bar .bar{width:100%;max-width:28px;min-height:2px;background:var(--accent);border-radius:5px 5px 0 0}
+.month-bar .count{font-size:11px;color:var(--ink-2);font-weight:600}
 @media(max-width:380px){.calendar-grid{gap:2px}.day{min-height:42px;padding:5px 3px}.day .dot{right:4px;bottom:5px}.statbar .name{width:80px}}
 </style>
 </head>
@@ -275,7 +285,7 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
     <h2 id="cal-label"></h2>
     <button class="arrow" id="cal-next" aria-label="Next month">›</button>
   </div>
-  <div id="calendar-grid"></div>
+  <div id="calendar-grid" class="calendar-grid"></div>
   <div class="day-detail" id="day-detail"></div>
 </section>
 
@@ -710,6 +720,16 @@ function renderStatBars(body,title,values){
   body.appendChild(el("h2","sec",title)); body.appendChild(card);
 }
 function renderGeneralStats(body,sessions){
+  var typeDays={}, monthDays={};
+  sessions.forEach(function(s){
+    if(!typeDays[s.type]) typeDays[s.type]={};
+    typeDays[s.type][s.date]=true;
+    var month=s.date.slice(0,7);
+    if(!monthDays[month]) monthDays[month]={};
+    monthDays[month][s.date]=true;
+  });
+  renderTypePie(body,typeDays);
+  renderMonthlyBars(body,monthDays);
   var groups={};
   GROUPS.forEach(function(g){ groups[g]={sets:0,exercises:{}}; });
   sessions.forEach(function(s){ s.entries.forEach(function(en){ var ex=exById(en.exerciseId); if(!ex||!groups[ex.group]) return; groups[ex.group].sets+=setsOf(en).length; groups[ex.group].exercises[ex.id]=true; }); });
@@ -783,6 +803,23 @@ $("btn-targets").onclick = function(){
   p.hidden = false;
 };
 
+function renderTypePie(body,typeDays){
+  var types=Object.keys(typeDays), counts={}, total=0;
+  types.forEach(function(type){ counts[type]=Object.keys(typeDays[type]).length; total+=counts[type]; });
+  var colors=["#1F49E0","#0B8F5E","#B67908","#C0392B","#6C5CE7","#168AAD"];
+  types.sort(function(a,b){ return counts[b]-counts[a] || a.localeCompare(b); });
+  var stops=[], current=0;
+  types.forEach(function(type,index){ var start=current/total*360; current+=counts[type]; stops.push(colors[index%colors.length]+" "+start+"deg "+current/total*360+"deg"); });
+  var card=el("div","card chart-card"); card.appendChild(el("div","t","Gym days by workout type"));
+  var wrap=el("div","chart-wrap"), pie=el("div","pie"); pie.style.background="conic-gradient("+stops.join(", ")+")"; wrap.appendChild(pie);
+  var legend=el("div","chart-legend"); types.forEach(function(type,index){var row=el("div","legend-row");var swatch=el("span","legend-swatch");swatch.style.background=colors[index%colors.length];row.appendChild(swatch);row.appendChild(el("span",null,type+" · "+counts[type]));legend.appendChild(row);}); wrap.appendChild(legend); card.appendChild(wrap); body.appendChild(card);
+}
+function renderMonthlyBars(body,monthDays){
+  var months=Object.keys(monthDays).sort(), counts=months.map(function(month){return Object.keys(monthDays[month]).length;}), max=Math.max.apply(null,counts.concat([1]));
+  var card=el("div","card chart-card"); card.appendChild(el("div","t","Gym days by month"));
+  var chart=el("div","bar-chart"); months.forEach(function(month,index){var col=el("div","month-bar"), count=counts[index], bar=el("div","bar");bar.style.height=Math.max(3,Math.round(count/max*100))+"%";col.appendChild(el("div","count",count+""));col.appendChild(bar);col.appendChild(el("div",null,parseISO(month+"-01").toLocaleDateString(undefined,{month:"short"})));chart.appendChild(col);});
+  card.appendChild(chart); body.appendChild(card);
+}
 var theme = null;
 try{ theme = localStorage.getItem(KEY+".theme"); }catch(e){}
 if(theme) document.documentElement.setAttribute("data-theme", theme);
