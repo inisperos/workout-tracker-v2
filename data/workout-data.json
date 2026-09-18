@@ -124,6 +124,11 @@
       "id": "3evxrpv",
       "name": "Adductor Machine",
       "group": "Adductors"
+    },
+    {
+      "id": "otknask",
+      "name": "Preacher Curl",
+      "group": "Biceps"
     }
   ],
   "sessions": [
