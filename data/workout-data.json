@@ -376,6 +376,90 @@
       ],
       "created": 1789763713254,
       "updatedAt": 1789763817078
+    },
+    {
+      "id": "x1wq94o",
+      "date": "2026-09-10",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 5,
+              "reps": 10
+            },
+            {
+              "weight": 5,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 5
+            },
+            {
+              "weight": 25,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 7
+            },
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 6
+            },
+            {
+              "weight": 65,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 8
+            }
+          ]
+        }
+      ],
+      "created": 1789763899599,
+      "updatedAt": 1789764011348
     }
   ],
   "targets": {
