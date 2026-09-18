@@ -1,0 +1,145 @@
+{
+  "exercises": [
+    {
+      "id": "x0",
+      "name": "Barbell bench press",
+      "group": "Chest"
+    },
+    {
+      "id": "x1",
+      "name": "Incline dumbbell press",
+      "group": "Chest"
+    },
+    {
+      "id": "x2",
+      "name": "Cable fly",
+      "group": "Chest"
+    },
+    {
+      "id": "x3",
+      "name": "Lat pulldown",
+      "group": "Back"
+    },
+    {
+      "id": "x4",
+      "name": "Barbell row",
+      "group": "Back"
+    },
+    {
+      "id": "x5",
+      "name": "Seated cable row",
+      "group": "Back"
+    },
+    {
+      "id": "x6",
+      "name": "Overhead press",
+      "group": "Shoulders"
+    },
+    {
+      "id": "x7",
+      "name": "Lateral raise",
+      "group": "Shoulders"
+    },
+    {
+      "id": "x8",
+      "name": "Rear delt fly",
+      "group": "Shoulders"
+    },
+    {
+      "id": "x9",
+      "name": "Barbell curl",
+      "group": "Biceps"
+    },
+    {
+      "id": "x10",
+      "name": "Incline dumbbell curl",
+      "group": "Biceps"
+    },
+    {
+      "id": "x11",
+      "name": "Cable pushdown",
+      "group": "Triceps"
+    },
+    {
+      "id": "x12",
+      "name": "Overhead cable extension",
+      "group": "Triceps"
+    },
+    {
+      "id": "x13",
+      "name": "Barbell squat",
+      "group": "Quads"
+    },
+    {
+      "id": "x14",
+      "name": "Leg press",
+      "group": "Quads"
+    },
+    {
+      "id": "x15",
+      "name": "Leg extension",
+      "group": "Quads"
+    },
+    {
+      "id": "x16",
+      "name": "Romanian deadlift",
+      "group": "Hamstrings"
+    },
+    {
+      "id": "x17",
+      "name": "Seated leg curl",
+      "group": "Hamstrings"
+    },
+    {
+      "id": "x18",
+      "name": "Hip thrust",
+      "group": "Glutes"
+    },
+    {
+      "id": "x19",
+      "name": "Standing calf raise",
+      "group": "Calves"
+    },
+    {
+      "id": "x20",
+      "name": "Cable crunch",
+      "group": "Core"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "r5y8fvn",
+      "date": "2026-09-18",
+      "location": "Work Gym",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 10
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789754194313
+    }
+  ],
+  "targets": {
+    "Chest": 10,
+    "Back": 10,
+    "Shoulders": 10,
+    "Biceps": 10,
+    "Triceps": 10,
+    "Quads": 10,
+    "Hamstrings": 10,
+    "Glutes": 10,
+    "Calves": 6,
+    "Core": 6
+  }
+}
