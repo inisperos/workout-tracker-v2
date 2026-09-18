@@ -125,9 +125,23 @@
               "reps": 7
             }
           ]
+        },
+        {
+          "exerciseId": "x2",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 8
+            },
+            {
+              "weight": 45,
+              "reps": 7
+            }
+          ]
         }
       ],
-      "created": 1789754194313
+      "created": 1789754194313,
+      "updatedAt": 1789761592966
     }
   ],
   "targets": {
