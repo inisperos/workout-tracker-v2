@@ -20,8 +20,8 @@ Be able to see an aggregate of my workouts and allow myself a visual cue of the 
 Each screen must have all its listed features to be considered "done" before moving to the next phase.
 
 - **MVP** — Main Dashboard, Track Workout, and View History → Screens A, B, C, D, E
-- **Phase 2** — See Stats → Screens F, G
-- **Phase 3** — Add calendar → Screen H
+- **Phase 2** — See Stats → Screens F, G **complete**
+- **Phase 3** — Add calendar → Screen H **complete**
 - **Phase 4** — GitHub-backed persistence for workout data
 - **Phase 5** — Styling
 
