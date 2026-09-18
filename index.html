@@ -388,6 +388,17 @@ function apiUrl(settings){ return "https://api.github.com/repos/" + encodeURICom
 function encodeData(value){ return btoa(unescape(encodeURIComponent(value))); }
 function decodeData(value){ return decodeURIComponent(escape(atob(value.replace(/\n/g,"")))); }
 function githubHeaders(settings){ return {Accept:"application/vnd.github+json", Authorization:"Bearer " + settings.token, "X-GitHub-Api-Version":"2022-11-28"}; }
+function mergeRemote(local, remote){
+  var merged = remote;
+  var remoteIds = {};
+  merged.sessions.forEach(function(s){ remoteIds[s.id] = true; });
+  local.sessions.forEach(function(s){ if(!remoteIds[s.id]) merged.sessions.push(s); });
+  var exerciseIds = {};
+  merged.exercises.forEach(function(x){ exerciseIds[x.id] = true; });
+  local.exercises.forEach(function(x){ if(!exerciseIds[x.id]) merged.exercises.push(x); });
+  merged.targets = Object.assign({}, local.targets, remote.targets);
+  return merged;
+}
 var remoteSaveTimer = null;
 function queueRemoteSave(){
   if(!syncSettings()) return;
@@ -404,10 +415,12 @@ async function pullRemote(silent){
     var payload = settings.token ? decodeData((await response.json()).content) : await response.text();
     var remote = JSON.parse(payload);
     if(!remote || typeof remote!=="object" || !Array.isArray(remote.sessions)) throw new Error("Invalid workout data");
-    db = remote;
+    var local = db;
+    db = mergeRemote(local, remote);
     localStorage.setItem(KEY, JSON.stringify(db));
     setSyncNote("Synced from GitHub");
     if(!silent) toast("Workout data loaded");
+    if(db.sessions.length!==remote.sessions.length || db.exercises.length!==remote.exercises.length) queueRemoteSave();
     if(state.screen==="A") renderDashboard();
     return true;
   }catch(e){
