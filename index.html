@@ -195,6 +195,7 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
     <h1>Workout Tracker</h1>
     <button class="iconbtn" id="btn-stats" disabled title="Phase 2">Stats</button>
     <button class="iconbtn" id="btn-cal" disabled title="Phase 3">Calendar</button>
+    <button class="iconbtn" id="btn-sync" title="Sync workout data with GitHub">Sync</button>
     <button class="iconbtn" id="btn-theme" title="Switch theme">◐</button>
   </div>
 
@@ -220,7 +221,7 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
   <h2 class="sec">Recent sessions</h2>
   <div id="recent"></div>
 
-  <p class="footnote">Saved in this browser · MVP: screens A–E</p>
+  <p class="footnote" id="sync-note">GitHub sync is off · MVP: screens A–E</p>
 </section>
 
 <!-- ============ SCREEN B: LOG WORKOUT ============ -->
@@ -356,6 +357,8 @@ var SEED = [
 ];
 
 var KEY = "workout-tracker.v1";
+var SYNC_KEY = KEY + ".github";
+var DEFAULT_SYNC = {owner:"inisperos", repo:"workout-tracker-v2", branch:"main", path:"data/workout-data.json"};
 var db = load();
 
 function load(){
@@ -370,7 +373,64 @@ function load(){
   GROUPS.forEach(function(g){ if(typeof d.targets[g] !== "number") d.targets[g] = (g==="Core"||g==="Calves") ? 6 : 10; });
   return d;
 }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(db)); }catch(e){ toast("Couldn't save — storage is full or blocked"); } }
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(db)); }
+  catch(e){ toast("Couldn't save — storage is full or blocked"); return; }
+  queueRemoteSave();
+}
+function syncSettings(){
+  var settings = null;
+  try{ var raw = localStorage.getItem(SYNC_KEY); if(raw) settings = JSON.parse(raw); }catch(e){}
+  return settings && settings.token ? Object.assign({}, DEFAULT_SYNC, settings) : null;
+}
+function setSyncNote(text){ $("sync-note").textContent = text + " · MVP: screens A–E"; }
+function apiUrl(settings){ return "https://api.github.com/repos/" + encodeURIComponent(settings.owner) + "/" + encodeURIComponent(settings.repo) + "/contents/" + settings.path.split("/").map(encodeURIComponent).join("/"); }
+function encodeData(value){ return btoa(unescape(encodeURIComponent(value))); }
+function decodeData(value){ return decodeURIComponent(escape(atob(value.replace(/\n/g,"")))); }
+function githubHeaders(settings){ return {Accept:"application/vnd.github+json", Authorization:"Bearer " + settings.token, "X-GitHub-Api-Version":"2022-11-28"}; }
+var remoteSaveTimer = null;
+function queueRemoteSave(){
+  if(!syncSettings()) return;
+  clearTimeout(remoteSaveTimer);
+  remoteSaveTimer = setTimeout(pushRemote, 500);
+}
+async function pullRemote(silent){
+  var settings = syncSettings() || DEFAULT_SYNC;
+  try{
+    var headers = settings.token ? githubHeaders(settings) : {Accept:"application/vnd.github.raw+json"};
+    var response = await fetch(apiUrl(settings) + "?ref=" + encodeURIComponent(settings.branch), {headers:headers});
+    if(response.status===404) return false;
+    if(!response.ok) throw new Error("GitHub returned " + response.status);
+    var payload = settings.token ? decodeData((await response.json()).content) : await response.text();
+    var remote = JSON.parse(payload);
+    if(!remote || typeof remote!=="object" || !Array.isArray(remote.sessions)) throw new Error("Invalid workout data");
+    db = remote;
+    localStorage.setItem(KEY, JSON.stringify(db));
+    setSyncNote("Synced from GitHub");
+    if(!silent) toast("Workout data loaded");
+    if(state.screen==="A") renderDashboard();
+    return true;
+  }catch(e){
+    setSyncNote("GitHub sync unavailable");
+    if(!silent) toast("Couldn't load GitHub data");
+    return false;
+  }
+}
+async function pushRemote(){
+  var settings = syncSettings(); if(!settings) return;
+  setSyncNote("Saving to GitHub");
+  try{
+    var headers = githubHeaders(settings), current = await fetch(apiUrl(settings), {headers:headers});
+    var sha = null;
+    if(current.ok) sha = (await current.json()).sha;
+    else if(current.status!==404) throw new Error("GitHub returned " + current.status);
+    var body = {message:"Update workout data", content:encodeData(JSON.stringify(db,null,2)), branch:settings.branch};
+    if(sha) body.sha = sha;
+    var response = await fetch(apiUrl(settings), {method:"PUT", headers:Object.assign({},headers,{"Content-Type":"application/json"}), body:JSON.stringify(body)});
+    if(!response.ok) throw new Error("GitHub returned " + response.status);
+    setSyncNote("Synced with GitHub");
+  }catch(e){ setSyncNote("GitHub save failed"); toast("Couldn't save to GitHub"); }
+}
 function uid(){ return Math.random().toString(36).slice(2,9); }
 
 /* ---------------- dates ---------------- */
@@ -789,9 +849,22 @@ $("s-delete").onclick = function(){
   save(); go("A"); toast("Session deleted");
 };
 
+$("btn-sync").onclick = async function(){
+  var settings = syncSettings();
+  if(!settings){
+    var token = prompt("Enter a GitHub fine-grained token with Contents read/write access for this repository.");
+    if(!token) return;
+    settings = Object.assign({}, DEFAULT_SYNC, {token:token.trim()});
+    try{ localStorage.setItem(SYNC_KEY, JSON.stringify(settings)); }
+    catch(e){ toast("Couldn't store GitHub settings"); return; }
+  }
+  if(!(await pullRemote(false))) await pushRemote();
+};
+
 /* ---------------- boot ---------------- */
 $("in-date").value = iso(new Date());
 renderDashboard();
+pullRemote(true);
 
 // dashboard primary action
 var cta = document.createElement("div");
