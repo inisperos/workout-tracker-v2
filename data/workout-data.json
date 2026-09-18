@@ -1333,6 +1333,68 @@
       ],
       "created": 1789765398423,
       "updatedAt": 1789765508313
+    },
+    {
+      "id": "bqrx8p0",
+      "date": "2026-07-28",
+      "location": "Planet Fitness",
+      "type": "Pull",
+      "entries": [
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 6
+            },
+            {
+              "weight": 22.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 8
+            },
+            {
+              "weight": 85,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 8
+            },
+            {
+              "weight": 80,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "b41o6u7",
+          "sets": [
+            {
+              "weight": 42.5,
+              "reps": 5
+            },
+            {
+              "weight": 35,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789767618000,
+      "updatedAt": 1789767664133
     }
   ],
   "targets": {
@@ -1344,8 +1406,8 @@
     "Quads": 6,
     "Hamstrings": 6,
     "Glutes": 6,
+    "Adductors": 10,
     "Calves": 3,
-    "Core": 3,
-    "Adductors": 10
+    "Core": 3
   }
 }
