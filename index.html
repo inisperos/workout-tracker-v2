@@ -1124,7 +1124,11 @@ $("btn-sync").onclick = async function(){
     try{ localStorage.setItem(SYNC_KEY, JSON.stringify(settings)); }
     catch(e){ toast("Couldn't store GitHub settings"); return; }
   }
-  if(await pullRemote(false)) return;
+  if(await pullRemote(false)){
+    clearTimeout(remoteSaveTimer);
+    await pushRemote();
+    return;
+  }
   var replacement = prompt("GitHub could not load data. Paste a replacement token with Contents read/write access to inisperos/workout-tracker-v2, or cancel.");
   if(!replacement) return;
   settings.token = replacement.trim();
