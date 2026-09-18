@@ -497,7 +497,7 @@ async function pullRemote(silent){
     db = mergeRemote(local, remote);
     var needsPush = JSON.stringify(db)!==JSON.stringify(remote);
     localStorage.setItem(KEY, JSON.stringify(db));
-    setSyncNote("Synced from GitHub");
+    setSyncNote("Loaded from GitHub · "+db.sessions.length+" sessions");
     if(!silent) toast("Workout data loaded");
     if(needsPush) queueRemoteSave();
     if(state.screen==="A") renderDashboard();
@@ -520,7 +520,7 @@ async function pushRemote(){
     if(sha) body.sha = sha;
     var response = await fetch(apiUrl(settings), {method:"PUT", headers:Object.assign({},headers,{"Content-Type":"application/json"}), body:JSON.stringify(body)});
     if(!response.ok) throw new Error("GitHub returned " + response.status);
-    setSyncNote("Synced with GitHub");
+    setSyncNote("Synced with GitHub · "+db.sessions.length+" sessions");
     return true;
   }catch(e){ setSyncNote("GitHub save failed"); toast("Couldn't save to GitHub"); return false; }
 }
