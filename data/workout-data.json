@@ -234,7 +234,7 @@
     }
   ],
   "targets": {
-    "Chest": 10,
+    "Chest": 6,
     "Back": 10,
     "Shoulders": 10,
     "Biceps": 10,
