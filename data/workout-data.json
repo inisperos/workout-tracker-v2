@@ -74,6 +74,51 @@
       "id": "rin7h0m",
       "name": "Abductors",
       "group": "Glutes"
+    },
+    {
+      "id": "x1",
+      "name": "Incline dumbbell press",
+      "group": "Chest"
+    },
+    {
+      "id": "x2",
+      "name": "Cable fly",
+      "group": "Chest"
+    },
+    {
+      "id": "x4",
+      "name": "Barbell row",
+      "group": "Back"
+    },
+    {
+      "id": "x5",
+      "name": "Seated cable row",
+      "group": "Back"
+    },
+    {
+      "id": "x6",
+      "name": "Overhead press",
+      "group": "Shoulders"
+    },
+    {
+      "id": "x10",
+      "name": "Incline dumbbell curl",
+      "group": "Biceps"
+    },
+    {
+      "id": "x12",
+      "name": "Overhead cable extension",
+      "group": "Triceps"
+    },
+    {
+      "id": "x16",
+      "name": "Romanian deadlift",
+      "group": "Hamstrings"
+    },
+    {
+      "id": "zzhj0gy",
+      "name": "Lying Leg Curl",
+      "group": "Hamstrings"
     }
   ],
   "sessions": [
