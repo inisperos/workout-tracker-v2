@@ -390,9 +390,14 @@ function decodeData(value){ return decodeURIComponent(escape(atob(value.replace(
 function githubHeaders(settings){ return {Accept:"application/vnd.github+json", Authorization:"Bearer " + settings.token, "X-GitHub-Api-Version":"2022-11-28"}; }
 function mergeRemote(local, remote){
   var merged = remote;
-  var remoteIds = {};
-  merged.sessions.forEach(function(s){ remoteIds[s.id] = true; });
-  local.sessions.forEach(function(s){ if(!remoteIds[s.id]) merged.sessions.push(s); });
+  var remoteIndex = {};
+  merged.sessions.forEach(function(s, index){ remoteIndex[s.id] = index; });
+  local.sessions.forEach(function(s){
+    var index = remoteIndex[s.id];
+    if(index===undefined){ merged.sessions.push(s); return; }
+    var remoteSession = merged.sessions[index];
+    if((s.updatedAt && (!remoteSession.updatedAt || s.updatedAt>remoteSession.updatedAt)) || sessionSets(s)>sessionSets(remoteSession)) merged.sessions[index] = s;
+  });
   var exerciseIds = {};
   merged.exercises.forEach(function(x){ exerciseIds[x.id] = true; });
   local.exercises.forEach(function(x){ if(!exerciseIds[x.id]) merged.exercises.push(x); });
@@ -417,10 +422,11 @@ async function pullRemote(silent){
     if(!remote || typeof remote!=="object" || !Array.isArray(remote.sessions)) throw new Error("Invalid workout data");
     var local = db;
     db = mergeRemote(local, remote);
+    var needsPush = JSON.stringify(db)!==JSON.stringify(remote);
     localStorage.setItem(KEY, JSON.stringify(db));
     setSyncNote("Synced from GitHub");
     if(!silent) toast("Workout data loaded");
-    if(db.sessions.length!==remote.sessions.length || db.exercises.length!==remote.exercises.length) queueRemoteSave();
+    if(needsPush) queueRemoteSave();
     if(state.screen==="A") renderDashboard();
     return true;
   }catch(e){
@@ -722,6 +728,7 @@ $("c-done").onclick = async function(){
   d.entries = d.entries.filter(function(en){ return setsOf(en).length; })
                        .map(function(en){ return { exerciseId:en.exerciseId, sets:setsOf(en) }; });
   if(!d.entries.length){ toast("Log at least one set first"); return; }
+  d.updatedAt = Date.now();
   var i = -1;
   db.sessions.forEach(function(s,idx){ if(s.id===d.id) i=idx; });
   if(i>=0) db.sessions[i]=d; else db.sessions.push(d);
