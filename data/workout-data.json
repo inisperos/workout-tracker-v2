@@ -1344,8 +1344,8 @@
     "Quads": 6,
     "Hamstrings": 6,
     "Glutes": 6,
-    "Adductors": 10,
     "Calves": 3,
-    "Core": 3
+    "Core": 3,
+    "Adductors": 10
   }
 }
