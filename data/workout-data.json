@@ -104,6 +104,11 @@
       "id": "x20",
       "name": "Cable crunch",
       "group": "Core"
+    },
+    {
+      "id": "zyl8xsx",
+      "name": "Lat raise machine",
+      "group": "Shoulders"
     }
   ],
   "sessions": [
@@ -127,33 +132,117 @@
           ]
         },
         {
-          "exerciseId": "x2",
+          "exerciseId": "zyl8xsx",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "weight": 20,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 9
+            },
+            {
+              "weight": 80,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
           "sets": [
             {
               "weight": 45,
-              "reps": 8
+              "reps": 9
             },
             {
               "weight": 45,
               "reps": 7
             }
           ]
+        },
+        {
+          "exerciseId": "x9",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 7
+            },
+            {
+              "weight": 30,
+              "reps": 6
+            }
+          ]
         }
       ],
       "created": 1789754194313,
-      "updatedAt": 1789761592966
+      "updatedAt": 1789761886029
+    },
+    {
+      "id": "syhkqgl",
+      "date": "2026-09-12",
+      "location": "Planet Fitness",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 9
+            },
+            {
+              "weight": 10,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789761939178,
+      "updatedAt": 1789761970469
     }
   ],
   "targets": {
-    "Chest": 10,
-    "Back": 10,
-    "Shoulders": 10,
-    "Biceps": 10,
-    "Triceps": 10,
-    "Quads": 10,
-    "Hamstrings": 10,
-    "Glutes": 10,
-    "Calves": 6,
-    "Core": 6
+    "Chest": 8,
+    "Back": 6,
+    "Shoulders": 6,
+    "Biceps": 6,
+    "Triceps": 6,
+    "Quads": 6,
+    "Hamstrings": 6,
+    "Glutes": 6,
+    "Calves": 3,
+    "Core": 3
   }
 }
