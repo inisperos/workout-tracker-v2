@@ -491,6 +491,55 @@
       ],
       "created": 1789764086200,
       "updatedAt": 1789764139053
+    },
+    {
+      "id": "ij94xrd",
+      "date": "2026-09-02",
+      "location": "Work Gym",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "zyl8xsx",
+          "sets": [
+            {
+              "weight": 15,
+              "reps": 7
+            },
+            {
+              "weight": 15,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 9
+            },
+            {
+              "weight": 45,
+              "reps": 9
+            }
+          ]
+        }
+      ],
+      "created": 1789764195170,
+      "updatedAt": 1789764236978
     }
   ],
   "targets": {
