@@ -186,6 +186,51 @@
       ],
       "created": 1789754194313,
       "updatedAt": 1789761886029
+    },
+    {
+      "id": "syhkqgl",
+      "date": "2026-09-12",
+      "location": "Planet Fitness",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 9
+            },
+            {
+              "weight": 10,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789761939178,
+      "updatedAt": 1789761970469
     }
   ],
   "targets": {
