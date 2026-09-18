@@ -396,7 +396,8 @@ function mergeRemote(local, remote){
     var index = remoteIndex[s.id];
     if(index===undefined){ merged.sessions.push(s); return; }
     var remoteSession = merged.sessions[index];
-    if((s.updatedAt && (!remoteSession.updatedAt || s.updatedAt>remoteSession.updatedAt)) || sessionSets(s)>sessionSets(remoteSession)) merged.sessions[index] = s;
+    var localSets = sessionSets(s), remoteSets = sessionSets(remoteSession);
+    if(localSets>remoteSets || (localSets===remoteSets && s.updatedAt && (!remoteSession.updatedAt || s.updatedAt>remoteSession.updatedAt))) merged.sessions[index] = s;
   });
   var exerciseIds = {};
   merged.exercises.forEach(function(x){ exerciseIds[x.id] = true; });
