@@ -425,6 +425,72 @@
       ],
       "created": 1789763899599,
       "updatedAt": 1789764011348
+    },
+    {
+      "id": "4mji3bw",
+      "date": "2026-09-03",
+      "location": "Planet Fitness",
+      "type": "Pull",
+      "entries": [
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 7
+            },
+            {
+              "weight": 90,
+              "reps": 7
+            },
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 7
+            },
+            {
+              "weight": 80,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x8",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 9
+            }
+          ]
+        }
+      ],
+      "created": 1789764086200,
+      "updatedAt": 1789764139053
     }
   ],
   "targets": {
