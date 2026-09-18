@@ -113,7 +113,7 @@
     {
       "id": "rin7h0m",
       "name": "Abductors",
-      "group": "Quads"
+      "group": "Glutes"
     }
   ],
   "sessions": [
@@ -248,6 +248,7 @@
     "Hamstrings": 6,
     "Glutes": 6,
     "Calves": 3,
-    "Core": 3
+    "Core": 3,
+    "Adductors": 10
   }
 }
