@@ -650,9 +650,10 @@ function lastEntryFor(exId, excludeSessionId){
   });
   return best;
 }
-function prFor(exId){
+function prFor(exId, location){
   var best = null;
   db.sessions.forEach(function(s){
+    if(s.location!==location) return;
     s.entries.forEach(function(en){
       if(en.exerciseId!==exId) return;
       setsOf(en).forEach(function(st){
@@ -728,7 +729,7 @@ function renderExercise(){
   $("d-title").textContent = x.name;
   var entry = draftEntry(x.id);
 
-  var pr = prFor(x.id), prev = lastEntryFor(x.id, state.draft.id);
+  var pr = prFor(x.id, state.draft.location), prev = lastEntryFor(x.id, state.draft.id);
   var box = $("d-pr"); box.innerHTML = "";
   var line = el("div","pr");
   line.appendChild(el("div","v", pr ? pr.weight + " × " + pr.reps : "—"));
