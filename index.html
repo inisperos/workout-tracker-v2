@@ -376,7 +376,7 @@ function load(){
 function save(){
   try{ localStorage.setItem(KEY, JSON.stringify(db)); }
   catch(e){ toast("Couldn't save — storage is full or blocked"); return; }
-  queueRemoteSave();
+  return syncSettings() ? pushRemote() : Promise.resolve(false);
 }
 function syncSettings(){
   var settings = null;
@@ -430,7 +430,7 @@ async function pullRemote(silent){
   }
 }
 async function pushRemote(){
-  var settings = syncSettings(); if(!settings) return;
+  var settings = syncSettings(); if(!settings) return false;
   setSyncNote("Saving to GitHub");
   try{
     var headers = githubHeaders(settings), current = await fetch(apiUrl(settings), {headers:headers});
@@ -442,7 +442,8 @@ async function pushRemote(){
     var response = await fetch(apiUrl(settings), {method:"PUT", headers:Object.assign({},headers,{"Content-Type":"application/json"}), body:JSON.stringify(body)});
     if(!response.ok) throw new Error("GitHub returned " + response.status);
     setSyncNote("Synced with GitHub");
-  }catch(e){ setSyncNote("GitHub save failed"); toast("Couldn't save to GitHub"); }
+    return true;
+  }catch(e){ setSyncNote("GitHub save failed"); toast("Couldn't save to GitHub"); return false; }
 }
 function uid(){ return Math.random().toString(36).slice(2,9); }
 
@@ -716,7 +717,7 @@ $("c-add").onclick = function(){ go("E"); };
 $("c-discard").onclick = function(){
   if(sessionSets(state.draft)===0 || confirm("Discard this session and everything logged in it?")){ state.draft=null; go("A"); }
 };
-$("c-done").onclick = function(){
+$("c-done").onclick = async function(){
   var d = state.draft;
   d.entries = d.entries.filter(function(en){ return setsOf(en).length; })
                        .map(function(en){ return { exerciseId:en.exerciseId, sets:setsOf(en) }; });
@@ -724,10 +725,10 @@ $("c-done").onclick = function(){
   var i = -1;
   db.sessions.forEach(function(s,idx){ if(s.id===d.id) i=idx; });
   if(i>=0) db.sessions[i]=d; else db.sessions.push(d);
-  save();
+  var synced = await save();
   state.draft=null; state.weekOffset=0;
   go("A");
-  toast("Session saved");
+  toast(synced ? "Session saved to GitHub" : "Session saved on this device");
 };
 
 /* ================= SCREEN D ================= */
