@@ -1498,6 +1498,103 @@
       ],
       "created": 1789775819141,
       "updatedAt": 1789777502148
+    },
+    {
+      "id": "t7p5jnw",
+      "date": "2026-09-19",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 7
+            },
+            {
+              "weight": 60,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 9
+            },
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "rhsae73",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 8
+            },
+            {
+              "weight": 10,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "weight": 20,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "weight": 25,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "o5072sp",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 10
+            },
+            {
+              "weight": 60,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 10
+            }
+          ]
+        }
+      ],
+      "created": 1789843241416,
+      "updatedAt": 1789845752192
     }
   ],
   "targets": {
