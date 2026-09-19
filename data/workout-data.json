@@ -1591,10 +1591,19 @@
               "reps": 10
             }
           ]
+        },
+        {
+          "exerciseId": "x20",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 6
+            }
+          ]
         }
       ],
       "created": 1789843241416,
-      "updatedAt": 1789845752192
+      "updatedAt": 1789845884913
     }
   ],
   "targets": {
