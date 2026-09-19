@@ -106,11 +106,6 @@
       "group": "Chest"
     },
     {
-      "id": "x4",
-      "name": "Barbell row",
-      "group": "Back"
-    },
-    {
       "id": "x10",
       "name": "Incline dumbbell curl",
       "group": "Biceps"
