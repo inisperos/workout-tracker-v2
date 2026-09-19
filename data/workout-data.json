@@ -1457,6 +1457,72 @@
       ],
       "created": 1789767686532,
       "updatedAt": 1789767727589
+    },
+    {
+      "id": "f8hhlkr",
+      "date": "2026-09-18",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 105,
+              "reps": 7
+            },
+            {
+              "weight": 105,
+              "reps": 7
+            },
+            {
+              "weight": 105,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "zzhj0gy",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 7
+            },
+            {
+              "weight": 60,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "3evxrpv",
+          "sets": [
+            {
+              "weight": 55,
+              "reps": 9
+            },
+            {
+              "weight": 55,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "rin7h0m",
+          "sets": [
+            {
+              "weight": 95,
+              "reps": 7
+            },
+            {
+              "weight": 95,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789775819141,
+      "updatedAt": 1789777502148
     }
   ],
   "targets": {
