@@ -220,6 +220,18 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
 .exercise-row:last-child{border-bottom:0}
 .exercise-row input,.exercise-row select{padding:8px;font-size:14px}
 .exercise-row .del{margin:0}
+.week-context{margin:10px 0 14px}
+.week-context .t{font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.week-context .context-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line-2);font-size:13px}
+.week-context .context-row:last-child{border-bottom:0}
+.context-row .grow{flex:1}
+.context-row .sets-count{font-weight:600;color:var(--ink-2)}
+.cue{border-left:3px solid var(--accent);background:var(--surface-2)}
+.timer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;color:var(--ink-2);font-size:13px}
+.timer strong{font-size:18px;color:var(--accent)}
+.timer button{background:none;border:0;color:var(--accent);font-weight:600;padding:4px}
+.edit-location{display:flex;gap:8px;margin-top:10px}
+.edit-location input{flex:1}
 @media(max-width:380px){.calendar-grid{gap:2px}.day{min-height:42px;padding:5px 3px}.day .dot{right:4px;bottom:5px}.statbar .name{width:80px}}
 </style>
 </head>
@@ -257,7 +269,7 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
   <button class="linkbtn" id="btn-exercises">Manage exercises</button>
   <div class="card targets" id="exercise-panel" hidden></div>
 
-  <h2 class="sec">Recent sessions</h2>
+  <h2 class="sec" id="logs-heading">Workout logs</h2>
   <div id="recent"></div>
 
   <p class="footnote" id="sync-note">GitHub sync is off · screens A–H</p>
@@ -344,8 +356,10 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
   <div class="filterbar">
     <button id="f-type" aria-pressed="true">For this session</button>
     <button id="f-all" aria-pressed="false">All exercises</button>
+    <button id="f-cued" aria-pressed="false">Cued first</button>
   </div>
 
+  <div class="card week-context" id="c-week-context"></div>
   <div id="c-list"></div>
 
   <button class="addset" id="c-add" style="margin-top:12px">+ Add new exercise</button>
@@ -366,6 +380,7 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
     <label>Sets — weight × reps</label>
     <div id="d-sets"></div>
     <button class="addset" id="d-addset">+ Add set</button>
+    <div class="timer" id="set-timer" hidden><span>Rest timer</span><strong id="timer-value">2:00</strong><button id="timer-stop">Stop</button></div>
   </div>
 
   <div class="cta"><div class="cta-inner">
@@ -397,6 +412,10 @@ input:focus,select:focus{border-color:var(--accent);outline:none}
 <section id="screen-S" class="screen">
   <div class="bar"><button class="back" data-go="A">‹ Dashboard</button><h1 style="text-align:right" id="s-title"></h1></div>
   <div id="s-body"></div>
+  <div class="card edit-location" id="s-location-edit" hidden>
+    <input type="text" id="s-location" aria-label="Workout location">
+    <button class="btn quiet" id="s-location-save">Save location</button>
+  </div>
   <div class="cta"><div class="cta-inner">
     <button class="btn quiet" id="s-delete">Delete session</button>
   </div></div>
@@ -417,6 +436,7 @@ var TYPE_GROUPS = {
   Upper:["Chest","Back","Shoulders","Biceps","Triceps"],
   Legs: ["Quads","Hamstrings","Glutes","Adductors","Calves"]
 };
+var LOCATION_INDEPENDENT_RE = /\b(barbell|dumbbell)\b/i;
 var SEED = [
   ["Barbell bench press","Chest"],["Incline dumbbell press","Chest"],["Cable fly","Chest"],
   ["Lat pulldown","Back"],["Barbell row","Back"],["Seated cable row","Back"],
@@ -441,6 +461,7 @@ function load(){
     d.exercises = SEED.map(function(s,i){ return {id:"x"+i, name:s[0], group:s[1]}; });
   }
   if(!Array.isArray(d.sessions)) d.sessions = [];
+  if(!Array.isArray(d.cues)) d.cues = [];
   if(!d.targets) d.targets = {};
   GROUPS.forEach(function(g){ if(typeof d.targets[g] !== "number") d.targets[g] = (g==="Core"||g==="Calves") ? 6 : 10; });
   return d;
@@ -475,6 +496,7 @@ function mergeRemote(local, remote){
   merged.exercises.forEach(function(x){ exerciseIds[x.id] = true; });
   local.exercises.forEach(function(x){ if(!exerciseIds[x.id]) merged.exercises.push(x); });
   merged.targets = Object.assign({}, local.targets, remote.targets);
+  merged.cues = Array.from(new Set((remote.cues||[]).concat(local.cues||[])));
   return merged;
 }
 var remoteSaveTimer = null;
@@ -542,11 +564,15 @@ function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("on");
 function exById(id){ for(var i=0;i<db.exercises.length;i++) if(db.exercises[i].id===id) return db.exercises[i]; return null; }
 function setsOf(entry){ return entry.sets.filter(function(s){ return s.reps>0; }); }
 function sessionSets(s){ var n=0; s.entries.forEach(function(e){ n+=setsOf(e).length; }); return n; }
+function formatSet(set){ return set.weight==="" ? "BW × "+set.reps : set.weight+" × "+set.reps; }
+function locationMattersFor(ex){ return !!ex && !LOCATION_INDEPENDENT_RE.test(ex.name); }
 
-var state = { screen:"A", weekOffset:0, draft:null, editing:null, openGroup:null, filterAll:false, viewSession:null, statsMode:"workout", statsDays:84, historyExercise:null, calendarMonth:new Date(new Date().getFullYear(),new Date().getMonth(),1), calendarDate:null };
+var state = { screen:"A", weekOffset:0, draft:null, editing:null, openGroup:null, filterAll:false, filterCued:false, viewSession:null, statsMode:"workout", statsDays:84, historyExercise:null, calendarMonth:new Date(new Date().getFullYear(),new Date().getMonth(),1), calendarDate:null };
+var timerInterval = null;
 
 /* ---------------- routing ---------------- */
 function go(name){
+  if(name!=="D" && timerInterval) stopRestTimer();
   state.screen = name;
   ["A","B","C","D","E","F","G","H","S"].forEach(function(n){ $("screen-"+n).classList.toggle("on", n===name); });
   window.scrollTo(0,0);
@@ -572,6 +598,10 @@ function weekRange(){
 function sessionsInWeek(){
   var r = weekRange(), a = iso(r.start), b = iso(r.end);
   return db.sessions.filter(function(s){ return s.date>=a && s.date<=b; });
+}
+function sessionsInWeekOf(date){
+  var start=mondayOf(parseISO(date)), end=addDays(start,6), a=iso(start), b=iso(end);
+  return db.sessions.filter(function(s){return s.date>=a&&s.date<=b;});
 }
 function renderDashboard(){
   var r = weekRange();
@@ -648,11 +678,11 @@ function renderDashboard(){
     }
   });
 
-  // recent sessions
+  // logs for the selected week
   var rec = $("recent"); rec.innerHTML = "";
-  var last = db.sessions.slice().sort(function(a,b){ return a.date<b.date?1:(a.date>b.date?-1:(b.created-a.created)); }).slice(0,8);
+  var last = wk.slice().sort(function(a,b){ return a.date<b.date?1:(a.date>b.date?-1:(b.created-a.created)); });
   if(!last.length){
-    rec.appendChild(el("div","empty-state","No sessions yet. Tap Log workout to record your first one."));
+    rec.appendChild(el("div","empty-state","No workout logged for this week."));
   } else {
     var list = el("div","list");
     last.forEach(function(s){
@@ -904,9 +934,11 @@ $("b-next").onclick = function(){
 /* ================= SCREEN C ================= */
 function lastEntryFor(exId, excludeSessionId, location){
   var best = null;
+  var exercise = exById(exId);
+  var locationMatters = exercise && !LOCATION_INDEPENDENT_RE.test(exercise.name);
   db.sessions.forEach(function(s){
     if(s.id===excludeSessionId) return;
-    if(s.location!==location) return;
+    if(locationMatters && s.location!==location) return;
     s.entries.forEach(function(en){
       if(en.exerciseId!==exId || !setsOf(en).length) return;
       if(!best || s.date>best.date) best = { date:s.date, sets:setsOf(en) };
@@ -916,8 +948,10 @@ function lastEntryFor(exId, excludeSessionId, location){
 }
 function prFor(exId, location){
   var best = null;
+  var exercise = exById(exId);
+  var locationMatters = exercise && !LOCATION_INDEPENDENT_RE.test(exercise.name);
   db.sessions.forEach(function(s){
-    if(s.location!==location) return;
+    if(locationMatters && s.location!==location) return;
     s.entries.forEach(function(en){
       if(en.exerciseId!==exId) return;
       setsOf(en).forEach(function(st){
@@ -933,14 +967,18 @@ function renderSession(){
   $("c-sub").textContent = fmtShort(parseISO(d.date)) + " · " + d.location;
   $("f-type").setAttribute("aria-pressed", state.filterAll?"false":"true");
   $("f-all").setAttribute("aria-pressed", state.filterAll?"true":"false");
+  $("f-cued").setAttribute("aria-pressed", state.filterCued?"true":"false");
   $("f-type").textContent = "For " + d.type.toLowerCase();
 
   var groups = TYPE_GROUPS[d.type];
-  var list = db.exercises.filter(function(x){ return state.filterAll || groups.indexOf(x.group)>=0; });
+  var list = db.exercises.filter(function(x){ return (state.filterAll || groups.indexOf(x.group)>=0) && (!state.filterCued || db.cues.indexOf(x.id)>=0); });
+  if(state.filterCued && !list.length) list = db.exercises.filter(function(x){ return state.filterAll || groups.indexOf(x.group)>=0; });
   list.sort(function(a,b){ return GROUPS.indexOf(a.group)-GROUPS.indexOf(b.group) || a.name.localeCompare(b.name); });
+  list.sort(function(a,b){ return (db.cues.indexOf(b.id)>=0)-(db.cues.indexOf(a.id)>=0); });
 
   var wrap = $("c-list"); wrap.innerHTML = "";
   if(!list.length){ wrap.appendChild(el("div","empty-state","No exercises here yet. Add one below.")); return; }
+  renderWeekContext();
   var ul = el("div","list");
   list.forEach(function(x){
     var entry = null;
@@ -948,20 +986,40 @@ function renderSession(){
     var done = entry ? setsOf(entry).length : 0;
 
     var it = el("button","item");
+    if(db.cues.indexOf(x.id)>=0) it.classList.add("cue");
     var g = el("div","grow");
     g.appendChild(el("div","t", x.name));
     var prev = lastEntryFor(x.id, d.id, d.location);
-    g.appendChild(el("div","s", x.group + (prev ? " · last: " + prev.sets.map(function(s){return s.weight+"×"+s.reps;}).join(", ") : " · no history yet")));
+    g.appendChild(el("div","s", x.group + (prev ? " · last: " + prev.sets.map(formatSet).join(", ") : " · no history yet")));
     it.appendChild(g);
     if(done){ var t=el("span","tag live", done + (done===1?" set":" sets")); it.appendChild(t); }
     it.appendChild(el("span","chev","›"));
     it.onclick = function(){ state.editing = x.id; go("D"); };
+    var touchStartX = 0;
+    it.addEventListener("touchstart", function(e){ touchStartX=e.touches[0].clientX; }, {passive:true});
+    it.addEventListener("touchend", function(e){
+      if(e.changedTouches[0].clientX-touchStartX>55){
+        e.preventDefault();
+        var cueIndex=db.cues.indexOf(x.id);
+        if(cueIndex>=0) db.cues.splice(cueIndex,1); else db.cues.push(x.id);
+        save(); renderSession(); toast(db.cues.indexOf(x.id)>=0 ? "Cued first" : "Cue removed");
+      }
+    });
     ul.appendChild(it);
   });
   wrap.appendChild(ul);
 }
+function renderWeekContext(){
+  var panel=$("c-week-context"), week=sessionsInWeekOf(state.draft.date); panel.innerHTML="";
+  panel.appendChild(el("div","t","This week by muscle group"));
+  var totals={}; GROUPS.forEach(function(g){totals[g]=0;});
+  week.forEach(function(s){s.entries.forEach(function(en){var ex=exById(en.exerciseId);if(ex)totals[ex.group]+=setsOf(en).length;});});
+  GROUPS.filter(function(g){return totals[g]>0;}).forEach(function(g){var row=el("div","context-row");row.appendChild(el("div","grow",g));row.appendChild(el("div","sets-count",totals[g]+(totals[g]===1?" set":" sets")));panel.appendChild(row);});
+  if(!week.length) panel.appendChild(el("div","hint","No sets logged in the selected week yet."));
+}
 $("f-type").onclick = function(){ state.filterAll=false; renderSession(); };
 $("f-all").onclick = function(){ state.filterAll=true; renderSession(); };
+$("f-cued").onclick = function(){ state.filterCued=!state.filterCued; renderSession(); };
 $("c-add").onclick = function(){ go("E"); };
 $("c-discard").onclick = function(){
   if(sessionSets(state.draft)===0 || confirm("Discard this session and everything logged in it?")){ state.draft=null; go("A"); }
@@ -991,6 +1049,7 @@ function draftEntry(exId){
 }
 function renderExercise(){
   var x = exById(state.editing); if(!x){ go("C"); return; }
+  stopRestTimer();
   $("d-title").textContent = x.name;
   var entry = draftEntry(x.id);
 
@@ -1000,22 +1059,26 @@ function renderExercise(){
   line.appendChild(el("div","v", pr ? pr.weight + " × " + pr.reps : "—"));
   line.appendChild(el("div","l", pr ? "best set · " + fmtShort(parseISO(pr.date)) : "no personal record yet"));
   box.appendChild(line);
+  if(x.name.toLowerCase()==="barbell bench press"){
+    var oneRep = oneRMFor(x.id, state.draft.location);
+    if(oneRep) box.appendChild(el("div","hint","Estimated 1RM: " + oneRep.weight + " × 1"));
+  }
 
   var hist = el("div","hist");
   var seen = [];
   db.sessions.slice().sort(function(a,b){ return a.date<b.date?1:-1; }).forEach(function(s){
     if(seen.length>=4) return;
     s.entries.forEach(function(en){
-      if(en.exerciseId!==x.id || !setsOf(en).length || seen.length>=4) return;
+      if(en.exerciseId!==x.id || !setsOf(en).length || seen.length>=4 || (locationMattersFor(x) && s.location!==state.draft.location)) return;
       var row = el("div","h-row");
       row.appendChild(el("div","h-d", fmtShort(parseISO(s.date))));
-      row.appendChild(el("div","h-s", setsOf(en).map(function(t){ return t.weight+"×"+t.reps; }).join("  ")));
+      row.appendChild(el("div","h-s", setsOf(en).map(formatSet).join("  ")));
       hist.appendChild(row); seen.push(1);
     });
   });
   if(!seen.length){ hist.appendChild(el("div","h-row")).appendChild(el("div","h-d","First time logging this one.")); }
   box.appendChild(hist);
-  if(prev) box.appendChild(el("div","hint","Last time: " + prev.sets.map(function(t){return t.weight+"×"+t.reps;}).join(", ")));
+  if(prev) box.appendChild(el("div","hint","Last time: " + prev.sets.map(formatSet).join(", ")));
 
   drawSets(entry);
 }
@@ -1024,7 +1087,7 @@ function drawSets(entry){
   entry.sets.forEach(function(st, i){
     var r = el("div","setrow");
     r.appendChild(el("div","idx", (i+1)+""));
-    var w = document.createElement("input"); w.type="number"; w.inputMode="decimal"; w.step="0.5"; w.min="0"; w.placeholder="lbs"; w.value = st.weight===""?"":st.weight;
+    var w = document.createElement("input"); w.type="number"; w.inputMode="decimal"; w.step="0.5"; w.min="0"; w.placeholder="lbs (optional)"; w.value = st.weight===""?"":st.weight;
     w.oninput = function(){ st.weight = w.value===""?"":parseFloat(w.value); };
     r.appendChild(w);
     r.appendChild(el("span","x","×"));
@@ -1044,7 +1107,23 @@ $("d-addset").onclick = function(){
   drawSets(entry);
   var inputs = $("d-sets").querySelectorAll("input");
   if(inputs.length) inputs[inputs.length-1].focus();
+  startRestTimer();
 };
+function oneRMFor(exId, location){
+  var best=0, exercise=exById(exId), locationMatters=exercise && !LOCATION_INDEPENDENT_RE.test(exercise.name);
+  db.sessions.forEach(function(s){
+    if(locationMatters && s.location!==location) return;
+    s.entries.forEach(function(en){if(en.exerciseId!==exId)return;setsOf(en).forEach(function(st){if(st.weight>0&&st.reps>0)best=Math.max(best,st.weight*(1+st.reps/30));});});
+  });
+  return best ? {weight:Math.round(best*2)/2} : null;
+}
+function stopRestTimer(){clearInterval(timerInterval);timerInterval=null;$("set-timer").hidden=true;}
+function startRestTimer(){
+  stopRestTimer(); var end=Date.now()+120000; $("set-timer").hidden=false;
+  function tick(){var remaining=Math.max(0,end-Date.now()),seconds=Math.ceil(remaining/1000);$("timer-value").textContent=Math.floor(seconds/60)+":"+(seconds%60<10?"0":"")+(seconds%60);if(!remaining){stopRestTimer();toast("Rest timer complete");}}
+  tick(); timerInterval=setInterval(tick,250);
+}
+$("timer-stop").onclick=stopRestTimer;
 $("d-next").onclick = function(){ go("C"); };
 
 /* ================= SCREEN E ================= */
@@ -1082,6 +1161,8 @@ function renderSessionDetail(){
   var s = db.sessions.filter(function(x){ return x.id===state.viewSession; })[0];
   if(!s){ go("A"); return; }
   $("s-title").textContent = s.type;
+  $("s-location").value = s.location || "Unspecified";
+  $("s-location-edit").hidden = false;
   var b = $("s-body"); b.innerHTML = "";
   var head = el("div","card");
   head.appendChild(el("div","t", fmtLong(s.date)));
@@ -1100,7 +1181,7 @@ function renderSessionDetail(){
     list.appendChild(it);
   });
   b.appendChild(list);
-  var edit = el("button","addset","Continue this session");
+  var edit = el("button","addset","Edit workout sets");
   edit.style.marginTop = "12px";
   edit.onclick = function(){
     state.draft = JSON.parse(JSON.stringify(s));
@@ -1109,6 +1190,11 @@ function renderSessionDetail(){
   };
   b.appendChild(edit);
 }
+$("s-location-save").onclick=function(){
+  var s=db.sessions.filter(function(x){return x.id===state.viewSession;})[0], location=$("s-location").value.trim();
+  if(!s||!location){toast("Enter a location");return;}
+  s.location=location; s.updatedAt=Date.now(); save(); renderSessionDetail(); toast("Location updated");
+};
 $("s-delete").onclick = function(){
   if(!confirm("Delete this session permanently?")) return;
   db.sessions = db.sessions.filter(function(x){ return x.id!==state.viewSession; });
@@ -1149,6 +1235,7 @@ cta.innerHTML = '<div class="cta-inner"><button class="btn" id="a-log">Log worko
 $("screen-A").appendChild(cta);
 $("a-log").onclick = function(){
   form = { dateMode:"today", date:iso(new Date()), locMode:"Planet Fitness", loc:"Planet Fitness", type:null };
+  state.filterCued = false;
   ["seg-date","seg-loc","seg-type"].forEach(function(id){
     var btns = $(id).querySelectorAll("button");
     Array.prototype.forEach.call(btns, function(b,i){ b.setAttribute("aria-pressed", (id!=="seg-type" && i===0) ? "true":"false"); });

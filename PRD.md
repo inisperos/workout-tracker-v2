@@ -62,11 +62,21 @@ Each screen must have all its listed features to be considered "done" before mov
 - Done → Main Dashboard (Screen A)
 - Click Add New Workout → Screen E
 - If past sessions exist, clicking the button next to an exercise → Screen D
+- Show running weekly set totals grouped by muscle group
+- Right-swipe an exercise to cue it to the top of the list
+- Start a two-minute rest timer when Add set is pressed
+- Weight is optional when logging a set; reps remain required
+- Barbell and dumbbell exercise PR/history cues are independent of location
 
 ### Screen D: Log Exercise Specification
 - User can type weight x reps
 - If Add Set is pressed, another text box appears
 - Back and Next → Active Session (Screen C)
+- Barbell bench press shows its best rep set and estimated 1RM
+
+### Home workout logs and session editing
+- The dashboard shows workout logs for the selected week, including when browsing previous weeks.
+- A submitted session can be reopened to edit its sets and location.
 
 ### Screen E: Add New Workout
 - User can type name of the workout
