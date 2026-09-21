@@ -76,11 +76,6 @@
       "group": "Glutes"
     },
     {
-      "id": "x2",
-      "name": "Cable fly",
-      "group": "Chest"
-    },
-    {
       "id": "zzhj0gy",
       "name": "Lying Leg Curl",
       "group": "Hamstrings"
@@ -99,6 +94,56 @@
       "id": "i8biey1",
       "name": "Machine Row",
       "group": "Back"
+    },
+    {
+      "id": "x1",
+      "name": "Incline dumbbell press",
+      "group": "Chest"
+    },
+    {
+      "id": "x10",
+      "name": "Incline dumbbell curl",
+      "group": "Biceps"
+    },
+    {
+      "id": "d8t98hl",
+      "name": "Calf raise on leg press",
+      "group": "Calves"
+    },
+    {
+      "id": "xl1758q",
+      "name": "Pec Deck",
+      "group": "Chest"
+    },
+    {
+      "id": "4y93dsz",
+      "name": "Dumbbell pullovers",
+      "group": "Triceps"
+    },
+    {
+      "id": "rhsae73",
+      "name": "Lat raise dumbbell",
+      "group": "Shoulders"
+    },
+    {
+      "id": "bqgm3pa",
+      "name": "Dumbbell shoulder press",
+      "group": "Shoulders"
+    },
+    {
+      "id": "b41o6u7",
+      "name": "Bicep curl machine",
+      "group": "Biceps"
+    },
+    {
+      "id": "f6pyf6o",
+      "name": "T bar row",
+      "group": "Back"
+    },
+    {
+      "id": "o5072sp",
+      "name": "Chest press",
+      "group": "Chest"
     }
   ],
   "sessions": [
@@ -540,6 +585,1025 @@
       ],
       "created": 1789764195170,
       "updatedAt": 1789764236978
+    },
+    {
+      "id": "k044pai",
+      "date": "2026-08-31",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 105,
+              "reps": 6
+            },
+            {
+              "weight": 105,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x13",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 6
+            },
+            {
+              "weight": 85,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "rin7h0m",
+          "sets": [
+            {
+              "weight": 95,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "3evxrpv",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "zzhj0gy",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 9
+            },
+            {
+              "weight": 60,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "d8t98hl",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 10
+            },
+            {
+              "weight": 45,
+              "reps": 10
+            }
+          ]
+        },
+        {
+          "exerciseId": "x14",
+          "sets": [
+            {
+              "weight": 70,
+              "reps": 5
+            }
+          ]
+        }
+      ],
+      "created": 1789764505823,
+      "updatedAt": 1789764591750
+    },
+    {
+      "id": "4i5526l",
+      "date": "2026-08-30",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 11
+            },
+            {
+              "weight": 10,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 9
+            },
+            {
+              "weight": 85,
+              "reps": 8
+            },
+            {
+              "weight": 85,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "weight": 25,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 57.5,
+              "reps": 7
+            },
+            {
+              "weight": 57.5,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x8",
+          "sets": [
+            {
+              "weight": 45,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789764606620,
+      "updatedAt": 1789764730090
+    },
+    {
+      "id": "jw0soaa",
+      "date": "2026-08-26",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 6
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 9
+            },
+            {
+              "weight": 10,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 9
+            },
+            {
+              "weight": 85,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 6
+            },
+            {
+              "weight": 25,
+              "reps": 5
+            },
+            {
+              "weight": 20,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x9",
+          "sets": [
+            {
+              "weight": 40,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 5
+            }
+          ]
+        }
+      ],
+      "created": 1789764749463,
+      "updatedAt": 1789764833280
+    },
+    {
+      "id": "x3izxe8",
+      "date": "2026-08-19",
+      "location": "Planet Fitness",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 9
+            },
+            {
+              "weight": 10,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 50,
+              "reps": 10
+            }
+          ]
+        },
+        {
+          "exerciseId": "4y93dsz",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 6
+            },
+            {
+              "weight": 30,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789764869573,
+      "updatedAt": 1789764921082
+    },
+    {
+      "id": "9v98nl2",
+      "date": "2026-08-17",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 11
+            },
+            {
+              "weight": 10,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 9
+            },
+            {
+              "weight": 90,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 5
+            },
+            {
+              "weight": 22.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 7
+            },
+            {
+              "weight": 25,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789764945431,
+      "updatedAt": 1789765024445
+    },
+    {
+      "id": "0i9wrs3",
+      "date": "2026-08-16",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "x18",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 9
+            },
+            {
+              "weight": 90,
+              "reps": 10
+            }
+          ]
+        },
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 105,
+              "reps": 6
+            },
+            {
+              "weight": 105,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "rin7h0m",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 10
+            },
+            {
+              "weight": 80,
+              "reps": 10
+            }
+          ]
+        }
+      ],
+      "created": 1789765036205,
+      "updatedAt": 1789765066881
+    },
+    {
+      "id": "kn2tupf",
+      "date": "2026-08-11",
+      "location": "Watermark Hotel",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 55,
+              "reps": 8
+            },
+            {
+              "weight": 55,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "rhsae73",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 8
+            },
+            {
+              "weight": 10,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "4y93dsz",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 7
+            },
+            {
+              "weight": 30,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "bqgm3pa",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 6
+            },
+            {
+              "weight": 25,
+              "reps": 5
+            }
+          ]
+        }
+      ],
+      "created": 1789765107624,
+      "updatedAt": 1789765176770
+    },
+    {
+      "id": "hrj252o",
+      "date": "2026-08-05",
+      "location": "Core",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "zyl8xsx",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 7
+            },
+            {
+              "weight": 30,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "b41o6u7",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 5
+            },
+            {
+              "weight": 30,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 27.5,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "f6pyf6o",
+          "sets": [
+            {
+              "weight": 55,
+              "reps": 7
+            },
+            {
+              "weight": 45,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789765194918,
+      "updatedAt": 1789765289583
+    },
+    {
+      "id": "s1k2o11",
+      "date": "2026-08-03",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "zzhj0gy",
+          "sets": [
+            {
+              "weight": 55,
+              "reps": 7
+            },
+            {
+              "weight": 55,
+              "reps": 7
+            },
+            {
+              "weight": 55,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 100,
+              "reps": 7
+            },
+            {
+              "weight": 100,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "rin7h0m",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 10
+            },
+            {
+              "weight": 80,
+              "reps": 9
+            }
+          ]
+        }
+      ],
+      "created": 1789765351715,
+      "updatedAt": 1789765388967
+    },
+    {
+      "id": "7tnrjfa",
+      "date": "2026-08-01",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 8
+            },
+            {
+              "weight": 10,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 9
+            },
+            {
+              "weight": 85,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 55,
+              "reps": 7
+            },
+            {
+              "weight": 55,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 7
+            },
+            {
+              "weight": 22.5,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789765398423,
+      "updatedAt": 1789765508313
+    },
+    {
+      "id": "bqrx8p0",
+      "date": "2026-07-28",
+      "location": "Planet Fitness",
+      "type": "Pull",
+      "entries": [
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 22.5,
+              "reps": 6
+            },
+            {
+              "weight": 22.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 85,
+              "reps": 8
+            },
+            {
+              "weight": 85,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 8
+            },
+            {
+              "weight": 80,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "b41o6u7",
+          "sets": [
+            {
+              "weight": 42.5,
+              "reps": 5
+            },
+            {
+              "weight": 35,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789767618000,
+      "updatedAt": 1789767664133
+    },
+    {
+      "id": "mzw24q0",
+      "date": "2026-07-27",
+      "location": "Planet Fitness",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 5
+            },
+            {
+              "weight": 7.5,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 9
+            },
+            {
+              "weight": 25,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 50,
+              "reps": 11
+            },
+            {
+              "weight": 50,
+              "reps": 9
+            }
+          ]
+        },
+        {
+          "exerciseId": "x12",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "weight": 25,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789767686532,
+      "updatedAt": 1789767727589
+    },
+    {
+      "id": "f8hhlkr",
+      "date": "2026-09-18",
+      "location": "Planet Fitness",
+      "type": "Legs",
+      "entries": [
+        {
+          "exerciseId": "x15",
+          "sets": [
+            {
+              "weight": 105,
+              "reps": 7
+            },
+            {
+              "weight": 105,
+              "reps": 7
+            },
+            {
+              "weight": 105,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "zzhj0gy",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 7
+            },
+            {
+              "weight": 60,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "3evxrpv",
+          "sets": [
+            {
+              "weight": 55,
+              "reps": 9
+            },
+            {
+              "weight": 55,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "rin7h0m",
+          "sets": [
+            {
+              "weight": 95,
+              "reps": 7
+            },
+            {
+              "weight": 95,
+              "reps": 7
+            }
+          ]
+        }
+      ],
+      "created": 1789775819141,
+      "updatedAt": 1789777502148
+    },
+    {
+      "id": "t7p5jnw",
+      "date": "2026-09-19",
+      "location": "Planet Fitness",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 7
+            },
+            {
+              "weight": 60,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 9
+            },
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "rhsae73",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 8
+            },
+            {
+              "weight": 10,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 20,
+              "reps": 8
+            },
+            {
+              "weight": 20,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 8
+            },
+            {
+              "weight": 25,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "o5072sp",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 10
+            },
+            {
+              "weight": 60,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "i8biey1",
+          "sets": [
+            {
+              "weight": 80,
+              "reps": 10
+            }
+          ]
+        },
+        {
+          "exerciseId": "x20",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1789843241416,
+      "updatedAt": 1789845884913
     }
   ],
   "targets": {
@@ -551,8 +1615,8 @@
     "Quads": 6,
     "Hamstrings": 6,
     "Glutes": 6,
+    "Adductors": 5,
     "Calves": 3,
-    "Core": 3,
-    "Adductors": 10
+    "Core": 3
   }
 }
