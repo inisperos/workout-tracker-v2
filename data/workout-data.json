@@ -1618,5 +1618,8 @@
     "Adductors": 5,
     "Calves": 3,
     "Core": 3
-  }
+  },
+  "cues": [
+    "x0"
+  ]
 }
