@@ -1697,6 +1697,81 @@
       ],
       "created": 1790027954324,
       "updatedAt": 1790029802563
+    },
+    {
+      "id": "he7bgoe",
+      "date": "2026-09-29",
+      "location": "Planet Fitness",
+      "type": "Push",
+      "entries": [
+        {
+          "exerciseId": "x0",
+          "sets": [
+            {
+              "weight": 65,
+              "reps": 8
+            },
+            {
+              "weight": 65,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "noxtrsl",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 7
+            },
+            {
+              "weight": 30,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 3
+            },
+            {
+              "weight": 25,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 5
+            },
+            {
+              "weight": 55,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 9
+            },
+            {
+              "weight": 10,
+              "reps": 8
+            }
+          ]
+        }
+      ],
+      "created": 1790811314245,
+      "updatedAt": 1790811368890
     }
   ],
   "targets": {
