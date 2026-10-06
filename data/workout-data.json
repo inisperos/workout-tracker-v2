@@ -149,6 +149,11 @@
       "id": "noxtrsl",
       "name": "Machine shoulder press",
       "group": "Shoulders"
+    },
+    {
+      "id": "3txsmgo",
+      "name": "Machine pullover",
+      "group": "Back"
     }
   ],
   "sessions": [
@@ -1944,6 +1949,113 @@
       ],
       "created": 1790902139831,
       "updatedAt": 1790904916656
+    },
+    {
+      "id": "xwq0qgg",
+      "date": "2026-10-03",
+      "location": "CSFC",
+      "type": "Upper",
+      "entries": [
+        {
+          "exerciseId": "x7",
+          "sets": [
+            {
+              "weight": 15,
+              "reps": 14
+            },
+            {
+              "weight": 15,
+              "reps": 2
+            }
+          ]
+        },
+        {
+          "exerciseId": "otknask",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 7
+            },
+            {
+              "weight": 10,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "x3",
+          "sets": [
+            {
+              "weight": 90,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "f6pyf6o",
+          "sets": [
+            {
+              "weight": 5,
+              "reps": 6
+            },
+            {
+              "weight": 2.5,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "o5072sp",
+          "sets": [
+            {
+              "weight": 10,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "exerciseId": "xl1758q",
+          "sets": [
+            {
+              "weight": 60,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "3txsmgo",
+          "sets": [
+            {
+              "weight": 25,
+              "reps": 7
+            }
+          ]
+        },
+        {
+          "exerciseId": "x11",
+          "sets": [
+            {
+              "weight": 70,
+              "reps": 6
+            },
+            {
+              "weight": 70,
+              "reps": 6
+            }
+          ]
+        },
+        {
+          "exerciseId": "noxtrsl",
+          "sets": [
+            {
+              "weight": 50,
+              "reps": 6
+            }
+          ]
+        }
+      ],
+      "created": 1791037477177,
+      "updatedAt": 1791043082963
     }
   ],
   "targets": {
@@ -1960,7 +2072,6 @@
     "Core": 3
   },
   "cues": [
-    "x0",
     "rin7h0m",
     "x15",
     "3evxrpv",
@@ -1970,6 +2081,10 @@
     "x7",
     "xl1758q",
     "x13",
-    "x3"
+    "x3",
+    "bqgm3pa",
+    "noxtrsl",
+    "x9",
+    "x11"
   ]
 }
